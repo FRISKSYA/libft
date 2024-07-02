@@ -32,6 +32,7 @@ int	ft_atoi(const char *str)
 	long	result;
 
 	index = 0;
+	is_mi = 0; // Initialize is_mi to 0
 	while (ft_isspace(str[index]))
 		index++;
 	if (str[index] == '-')
@@ -43,13 +44,13 @@ int	ft_atoi(const char *str)
 	{
 		if (is_mi != 1 && result > (LONG_MAX - (str[index] - '0')) / 10)
 			return ((int)LONG_MAX);
-		else if (is_mi == 1 && - result < (LONG_MIN + (str[index] - '0')) / 10)
+		else if (is_mi == 1 && -result < (LONG_MIN + (str[index] - '0')) / 10)
 			return ((int)LONG_MIN);
 		result = 10 * result + (str[index] - '0');
 		index++;
 	}
 	if (is_mi == 1)
-		return ((int)-1 * result);
+		return ((int)-result);
 	else
 		return ((int)result);
 }
